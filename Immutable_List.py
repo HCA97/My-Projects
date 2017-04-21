@@ -117,7 +117,7 @@ class Cons(ImmutableList): #Cons is the constructor of the list
     
     def iterator(self):
         #complexity O(1)
-        return self.__iter #creates an iterator object for the list
+        return self.__iter #returns the list's iterator object
 
 
 
