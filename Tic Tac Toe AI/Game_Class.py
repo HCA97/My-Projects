@@ -11,7 +11,7 @@ class Game:
     def run(self):
         play = True
         print(self.board)
-        while not self.board.isOver(): #play until game is not over
+        while not self.board.isOver(): #loop until game is over
     
             if play and not self.board.isFull():
                 (row, col) = self.player1.getMove(self.board)
