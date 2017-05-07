@@ -1,4 +1,3 @@
-from abc import ABCMeta, abstractmethod
 from random import choice
 from Board_Class import * #imports the Board Class
 
@@ -8,7 +7,6 @@ class Player:
     def getName(self): #returns the name
         return self.name
 
-    @abstractmethod
     def getMove(self,board):
         #comp, human different getmove functions
         #comp need to see the board
