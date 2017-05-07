@@ -39,7 +39,7 @@ class Game:
         self.board.reset() #initilize the board
 
 
-a = RandomPlayer("Random")
+a = Human("Human")
 b = SmartPlayer("Smart")
 g = Game(a,b)
 g.run()
