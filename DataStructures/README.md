@@ -6,16 +6,14 @@
 Data Structure that I implemented for my Algorithms and Data Structures Class;
 
 Simple Iterator
-List
-  - Immutable List
-  - Mutable List
-    -Linked List
-    -Double Linked List
+Immutable List
+Mutable List
+Linked List with Mutable List
+Double Linked List with Mutable List
 Stack with Immutable List
 Queue with Immutable List
-Set
-  -Bit Vector
-  -List Set with Immutable List
+Bit Vector
+List Set with Immutable List
 Buffer
 Option
 
