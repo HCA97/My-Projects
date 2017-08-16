@@ -1,10 +1,19 @@
 
 # Basic Data Structures
 
+#### Data Sturctures that I implemented for my Algorithms and Data Structures Class are;
 
+- Immutable List
+- Mutable List
+- Basic Iterator
+- Stack with Immutable List
+- Queue with Immutable List
+- Linked List with Mutable List
+- Doubly Linked List with Mutable List
+- List Set with Immutable List
+- Bit Vector
+- Buffer
 
-I implemented some Data Structures for my Algorithms and Data Structures Class.
-
-End of the files there are examples that they can help you to understand the code.
-
+End of the files there are examples that can help you to understand the code.
+ 
 
