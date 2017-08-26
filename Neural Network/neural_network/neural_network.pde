@@ -7,7 +7,7 @@ int Generation = 1;
 boolean hit = false;
 boolean dead = false;
 float xspeed = scl/3; // inital speed of the obstacle
-float dis = 8*width; // distance between obstacles
+float dis = 8*width; // distance between two obstacles
 float mutation_rate = 0.05;
 Vector in; // input Vector
 int maxW = 6*scl, minW = 4*scl; // parameters for obstacle width
