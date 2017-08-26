@@ -65,17 +65,4 @@ class Buffer(Queue):
         return iter
         
 
-##b = Buffer(10)
-##it = b.iterator()
-##for i in range(10):
-##    b.enqueue(i)
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()
-##
-##for i in range(3):
-##    b.dequeue()
-##it.init()
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()  
+  

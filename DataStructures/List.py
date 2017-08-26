@@ -1,5 +1,5 @@
 from abc import ABCMeta, abstractmethod #imports abstract class library
-from Iterator import Iterable, Iterator 
+from Iterator import * 
 Empty = Exception("Nil list is always Empty!")
 
 #iterator for list inherits from Iterator class

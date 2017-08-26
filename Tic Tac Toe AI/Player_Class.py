@@ -8,9 +8,6 @@ class Player:
         return self.name
 
     def getMove(self,board):
-        #comp, human have different getmove functions
-        #comp need to see the board
-        #we return a coordinate because we are using matrix
         pass
 
 class RandomPlayer(Player):

@@ -136,41 +136,4 @@ class ListSet(Set): #IMM List
     
 
 
-##s = ListSet()
-##for i in range(10):
-##    s.insert(i)
-##    s.insert(i)
-##it = s.iterator()
-##print("Printing set")
-##while it.hasNext():
-##     print(it.Next(), end = " ")
-##print()
-##it.init()
-##for i in range(3):
-##    s.delete(i)
-##s.delete(9)
-##print("Printing new set")
-##while it.hasNext():
-##     print(it.Next(), end = " ")
-##print()
-##for i in range(9):
-##    s.insert(i)
-##it.init()
-##print("Printing new set")
-##while it.hasNext():
-##     print(it.Next(), end = " ")
-##print()   
 
-##v = BitVector(10)
-##for i in range(10):
-##    v.insert(i)
-##it = v.iterator()
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()
-##for i in range(5):
-##    v.delete(i)
-##it.init()
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()
