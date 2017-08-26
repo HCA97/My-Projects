@@ -14,6 +14,6 @@
 - Bit Vector
 - Buffer
 
-End of the files there are examples that can help you to understand the code.
+There are examples in test files that can help you to understand the code.
  
 
