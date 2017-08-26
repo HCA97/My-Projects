@@ -21,8 +21,8 @@ class Neuron{
          tmp.add_scalar(D.bais.data[i+1][0]);
          tmp2 = tmp;
          tmp = D.connection[i].mul(tmp2);
-         //for(int j = 0; j < tmp.r; j++)
-         //  tmp.data[j][0] = sigmoid(tmp.data[j][0]);
+         for(int j = 0; j < tmp.r; j++)
+           tmp.data[j][0] = sigmoid(tmp.data[j][0]);
        }
        return sigmoid(tmp.dot_product(D.lastConnection));
   }
