@@ -121,35 +121,3 @@ class IL_Queue(Queue): #queue with immutable list
             
         
             
-##print("Stack")       
-##s = IL_Stack()
-##for i in range(10):
-##    s.push(i)
-##print("printing stack with iterator")
-##it = s.iterator()
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()
-##it.init()
-##print("popping elements")
-##for i in range(5):
-##    s.pop().print()
-##for i in range(10,13):
-##    s.push(i)
-##print("printing new stack with iterator")    
-##while it.hasNext():
-##    print(it.Next(), end = " ")
-##print()
-##
-##print("Queue")
-##q = IL_Queue()
-##print("Printing queue")
-##for i in range(10):
-##    q.enqueue(i)
-##q.print()
-##print("deleting elements")
-##for i in range(5):
-##    q.dequeue().print()
-##print("printing the new queue")
-##q.print()
-

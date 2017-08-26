@@ -61,7 +61,9 @@ class LinkedList(MutableList):
 
     def getData(self):
         #complexity O(1)
-        return self.__data
+        if self.__head != None:
+            return self.__head.data
+        raise Exception("Empty List")
     
     def delete(self, data):
         #complexity O(n)
@@ -189,36 +191,4 @@ class DoubleLinkedList(MutableList):
 
 
 
-##List = LinkedList()
-##dList = DoubleLinkedList() 
-##for i in range(10):
-##    List.insert(i)
-##    dList.insert(i)
-##
-##print("Printing Linked List")
-##List.print()
-##print("Printing Linked List reversed")
-##List.reverse()
-##List.print()
-##print("Printing Double Linked List")
-##dList.print()
-##
-##itL = List.iterator()
-##itdl = dList.iterator()
-##print("Printing Linked List with Iterator")
-##while itL.hasNext():
-##    print(itL.Next(), end = " ")
-##print()
-##print("printing first 5 elements of the DLL with iterator")
-##for i in range(5):
-##    print(itdl.Next(), end = " ")
-##print()
-##print("Printing Double Linked List backwards with Iterator")
-##while itdl.hasPrev():
-##    print(itdl.Prev(), end = " ")
-##print()
-##itdl.init()
-##print("Printing Double Linked List forward with Iterator")
-##while itdl.hasNext():
-##    print(itdl.Next(), end = " ")
-##print()        
+ 
