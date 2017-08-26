@@ -29,7 +29,7 @@ class Population{
               AIplayer father = m.get(index1);
               
               child = father.N.D.crossover(mother.N.D); // simple crossover
-              child.mutation(); // 10 percent change of mutation
+              child.mutation(); // 5 percent change of mutation
               
               Neuron n = new Neuron(child);
               AIplayer c = new AIplayer(n); // creating an individual with new DNA
