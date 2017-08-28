@@ -5,7 +5,8 @@ int points = 0;
 boolean hit = false;
 boolean dead = false;
 float xspeed = scl/3; // inital speed of the obstacle
-float dis = 8*width; // distance between obstacles
+float dis = 8*width; // distance between two obstacles
+
 int maxW = 6*scl, minW = 4*scl; // parameters for obstacle width
 int maxH = 8*scl, minH = 7*scl; // parameters for obstacle height
 

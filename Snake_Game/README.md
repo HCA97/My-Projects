@@ -5,3 +5,6 @@ Inspiration for the game come from [The Coding Train-Coding Challenge#2](https:/
 
 ## Aim
 - Try to avoid Obstacles and itself while collecting the food
+
+## Dependencies
+- Minim Library
