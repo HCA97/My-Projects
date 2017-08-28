@@ -8,9 +8,19 @@ class Matrix{
       if (random)
         for(int row = 0; row < y; row++)
           for(int col = 0; col < x; col++)
-              data[row][col] = random(-10,10);
+              data[row][col] = random(-1,1);
       r = y; c = x;
   }
+   
+  void Print(){
+  
+    for(int row = 0; row < r; row ++){
+       for(int col = 0; col < c; col ++)
+           print(data[row][col],"-");
+    
+    println("\n----------------------");
+    }
+  } 
  
   Vector mul(Vector v){ // Matrix Vector multiplication
     // precondition : entering correct size vector(Vector row = Matrix col)

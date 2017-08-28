@@ -2,7 +2,7 @@ class Population{
   AIplayer[] pop;
   
   Population(int size){
-    AIplayer[] pop = new AIplayer[size];
+    pop = new AIplayer[size];
     for(int i = 0; i < pop.length; i ++)
         pop[i] = new AIplayer();
   }
@@ -11,7 +11,7 @@ class Population{
         ArrayList<AIplayer> mating = new ArrayList<AIplayer>();
         
         for (int i = 0; i < pop.length; i++)
-            for (int j = 0; j < (int) pop[i].fitness*10; j++)
+            for (int j = 0; j < (int) pop[i].fitness*100; j++)
                  mating.add(pop[i]);  
                  
         return mating;
@@ -31,7 +31,7 @@ class Population{
               child = father.N.D.crossover(mother.N.D); // simple crossover
               child.mutation(); // 5 percent change of mutation
               
-              Neuron n = new Neuron(child);
+              NN n = new NN(child);
               AIplayer c = new AIplayer(n); // creating an individual with new DNA
               pop[i] = c; 
       

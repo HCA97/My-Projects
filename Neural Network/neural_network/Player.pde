@@ -38,12 +38,12 @@ class Player{
 
 class AIplayer extends Player{
   int fitness;
-  Neuron N;
+  NN N;
   AIplayer(){
     super();
-    N = new Neuron(input_size,hidden_layer_size);
+    N = new NN(input_size, layer);
   } 
-  AIplayer(Neuron n){
+  AIplayer(NN n){
     super();
     N = n;
   } 
