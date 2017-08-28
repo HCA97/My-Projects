@@ -1,41 +1,49 @@
+// Game Features
 PVector gravity = new PVector(0,1); // how fast loosing the y-speed
 int scl = 20; // size of the player
 int points = 0; 
-int pass = 1; // fitness values for AI default 1
-int index = 0;
-int Generation = 1;
 boolean hit = false;
 boolean dead = false;
 float xspeed = scl/3; // inital speed of the obstacle
 float dis = 8*width; // distance between obstacles
-float mutation_rate = 0.05;
-Vector in; // input Vector
 int maxW = 6*scl, minW = 4*scl; // parameters for obstacle width
-int maxH = 9*scl, minH = 7*scl; // parameters for obstacle height
+int maxH = 8*scl, minH = 7*scl; // parameters for obstacle height
+
+// For Recording Values
 int sum = 0;
 int best = 0;
-boolean AI = true;  // if false then player plays the game
-boolean train = true;
 int Best = 0, Worst = 10000;float Mean = 0;
-int input_size = 4, hidden_layer_size = 2;
-int population_size = 10;
-
 Table table; // Storing Best, Worst, Average of each generation
 Table dna;  // Storing the Best DNA
 TableRow[] newRows, dnaRows; 
 
+// AI features
+Vector in; // input Vector
+int pass = 1; // fitness values for AI default 1
+// Hyper-Parameters
+int input_size = 4; int [] layer = {1}; // index represents which layer, numbers represent amount of neuron in that layer
+int population_size = 10;
+float mutation_rate = 0.05;
 
+// Extras
+int index = 0;
+int Generation = 1;
+boolean AI = true;  // if false then player plays the game
+boolean train = true; // if false then AI stops training
+
+
+// Game Objects
 Population P;
 Obstacle [] O;
 Player p;
 
 
+
 void setup(){
-  randomSeed(0);
+  randomSeed(0); // for debugging and removing RNG
   size(800,400);
 
   in = new Vector(1,4,false);
-  P = new Population(population_size);
   p = new Player();
   
   O = new Obstacle[2];
@@ -44,16 +52,18 @@ void setup(){
   O[0].closer = true;
   O[1].closer = false;
   
-  
-  dna = new Table();
-  for (int i = 0; i< hidden_layer_size; i++)
-    for(int j = 0; j < input_size; j++)
-        dna.addColumn("Layer"+str(i)+str(j));
 
-  dna.addColumn("lastConnection");
+  P = new Population(population_size);
+  dna = new Table();
+  for(int i = 0; i < input_size; i ++)
+      dna.addColumn("Layer"+str(0)+str(i));
+  for (int i = 1; i< layer.length; i++)
+    for(int j = 0; j < layer[i-1]; j++)
+        dna.addColumn("Layer"+str(i)+str(j));
+ 
   dna.addColumn("bais");
   
-  dnaRows = new TableRow[4];
+  dnaRows = new TableRow[max(max(layer),input_size, layer.length)];
   for(int i = 0; i < dnaRows.length; i++)
         dnaRows[i] = dna.addRow();
   
@@ -62,13 +72,16 @@ void setup(){
   table.addColumn("Worst");
   table.addColumn("Mean");
   
-  newRows = new TableRow[150];
+  newRows = new TableRow[100]; // At most 100 generations
   for (int i = 0; i < newRows.length; i++)
-      newRows[i] = table.addRow();
-      
-      
+      newRows[i] = table.addRow();  
+  
   textSize(24);
   noStroke();
+}
+
+void keyPressed(){
+    train = !train;
 }
 
 void draw(){
@@ -94,33 +107,30 @@ void draw(){
       for(int i = 0; i < O.length; i++){
         O[i].show(O[i].hits(P.pop[index]));
         if(O[i].hits(P.pop[index])) {
-           if(Best < points)
-               Best = points;
-           if(Worst  > points)
-               Worst = points;
-           // Storing the DNA
-           if (best < points){
-              best = points;
+           if(train){
+               if(Best < points)
+                   Best = points;
+               if(Worst  > points)
+                   Worst = points;
+               // Storing the DNA
+               if (best < points){
+                  best = points;
+                  
+                  for(int j = 0; j < P.pop[index].N.D.connection.length; j++)
+                    for(int col = 0; col < P.pop[index].N.D.connection[j].c; col++)
+                        for(int row = 0; row < P.pop[index].N.D.connection[j].r; row++)
+                            dnaRows[row].setFloat("Layer"+str(j)+str(col),P.pop[index].N.D.connection[j].data[row][col]);
+                        
+                  for(int j = 0; j < P.pop[index].N.D.bais.r; j++)
+                        dnaRows[j].setFloat("bais",P.pop[index].N.D.bais.data[j][0]);
+                        
+                  saveTable(dna, "data/dna.csv"); 
+               }
               
-              for(int j = 0; j < P.pop[index].N.D.connection.length; j++){
-                for(int col = 0; col < P.pop[index].N.D.connection[j].c; col++)
-                    for(int row = 0; row < P.pop[index].N.D.connection[j].r; row++){
-                        dnaRows[row].setFloat("Layer"+str(j)+str(col),P.pop[index].N.D.connection[j].data[row][col]);
-                    }
-              }
-              for(int j = 0; j < P.pop[index].N.D.lastConnection.r; j++)
-                    dnaRows[j].setFloat("lastConnection",P.pop[index].N.D.lastConnection.data[j][0]);
-                    
-              for(int j = 0; j < P.pop[index].N.D.bais.r; j++)
-                    dnaRows[j].setFloat("bais",P.pop[index].N.D.bais.data[j][0]);
-                    
-              saveTable(dna, "data/dna.csv"); 
+               P.pop[index].fitness = pass;
+               sum += points;
+               index++;
            }
-          
-           P.pop[index].fitness = pass;
-           sum += points;
-           index++;
-
            // setting everthing to initial state
            points = 0;
            pass = 1;
@@ -151,23 +161,17 @@ void draw(){
     
       fill(0,255,255);
       
+      text("Points - ", 400, 30);
+      text(points, 500,30);
+
       text("Generation - ", 20, 30);
       text(Generation, 180,30);
       
       text("Player - ", 230, 30);
       text(index+1, 330,30);
       
-      text("Points - ", 400, 30);
-      text(points, 500,30);
-      
       text("Fitness - ", 580, 30);
       text(pass-1, 690,30);
-      
-      text("Best - ", 20, 60);
-      text(best, 100, 60);
-      
-      text("Previous Generation Mean - ", 200, 60);
-      text(Mean, 530, 60);
 
       if(!dead)
           points ++;
