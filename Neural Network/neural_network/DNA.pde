@@ -21,15 +21,17 @@ class DNA{
   // Shuffles the rows
      
       Matrix[] c = new Matrix[connection.length];
-      Vector b = bais;
+      Vector b = new Vector(1,bais.r,false);
       
       for(int i = 0; i < c.length; i++)
           c[i] = connection[i].mix(d.connection[i]);
       
-      int cut = round(random(d.bais.r));
+      int cut = round(random(bais.r));
 
       for(int i = 0; i < cut; i++)
               b.data[i][0] = d.bais.data[i][0];
+      for(int i = cut; i < d.bais.r; i++)
+              b.data[i][0] = d.bais.data[i][0]; 
 
        DNA solution = new DNA(c, b);
        return solution;
@@ -52,6 +54,7 @@ class DNA{
                  bais.data[row][0] = 
                  bais.data[row][0]*random(-2,2) + random(-5,5);
   }
+  
 
 
 

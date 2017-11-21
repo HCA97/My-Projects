@@ -1,4 +1,3 @@
-
 class NN{
   // connection weights between neurons and bais values
   DNA D;
@@ -6,8 +5,8 @@ class NN{
   NN(int input, int[] hiddenLayer){
      D = new DNA(input, hiddenLayer); 
   }
-
-  Neuron(DNA d){ // Neuron with specified DNA
+   
+  NN(DNA d){ // Neuron with specified DNA
       D = d;
   }
   

@@ -6,23 +6,19 @@ class Player:
         self.name = _name
     def getName(self): #returns the name
         return self.name
-
-    def getMove(self,board):
-        pass
-
+    
 class RandomPlayer(Player):
     def getMove(self, board): #chooses random move
         return choice(board.possibleMoves())
 
 class Human(Player):
     def getMove(self, board):
-        row = int(input("Enter row(1-3) = "))
-        col = int(input("Enter col(1-3) = "))
-        return row-1,col-1
+##        row = int(input("Enter row(1-3) = "))
+##        col = int(input("Enter col(1-3) = "))
+        return None
 
 class SmartPlayer(Player):
     def minimax(self,board, depth, isMax):
-        
         if board.getResult() is not 0: #checks is any player won
             if isMax: #player turns so opponent win
                 return depth - 10

@@ -1,12 +1,12 @@
-
+# Add a Exceptrion Class
 class Board:
     def __init__(self):
         self.b  = [[0 for x in range(3)] for y in range(3)] #creates a 3x3 matrix
         self.current = {1:'X',2:'O',0:' '} #stores the players and its symbols
         self.curr_player = 1
 
-    def getCurrentPlayer(self):
-        return self.curr_player
+##    def getCurrentPlayer(self):
+##        return self.curr_player
 
     def __str__(self): #prints the board
         string = ""

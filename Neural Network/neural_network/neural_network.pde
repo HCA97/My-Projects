@@ -4,9 +4,9 @@ int scl = 20; // size of the player
 int points = 0; 
 boolean hit = false;
 boolean dead = false;
-float xspeed = scl/3; // inital speed of the obstacle
+float initial_speed = scl/3;
+float xspeed = initial_speed; // inital speed of the obstacle
 float dis = 8*width; // distance between two obstacles
-
 int maxW = 6*scl, minW = 4*scl; // parameters for obstacle width
 int maxH = 8*scl, minH = 7*scl; // parameters for obstacle height
 
@@ -22,7 +22,7 @@ TableRow[] newRows, dnaRows;
 Vector in; // input Vector
 int pass = 1; // fitness values for AI default 1
 // Hyper-Parameters
-int input_size = 4; int [] layer = {1}; // index represents which layer, numbers represent amount of neuron in that layer
+int input_size = 4; int [] layer = {4,1}; // index represents which layer, numbers represent amount of neuron in that layer
 int population_size = 10;
 float mutation_rate = 0.05;
 
@@ -89,25 +89,27 @@ void draw(){
   background(0);
   if(AI){
       dead = false;
+      //P.pop[index].N.D.show();
       P.pop[index].show();
       P.pop[index].update();
       for(Obstacle obs : O){
              if(obs.closer){
-               in.data[0][0] = obs.h;
-               in.data[1][0] = obs.w;
+               in.data[0][0] = obs.h/maxH;
+               in.data[1][0] = obs.w/maxW;
                in.data[2][0] = xspeed;
                in.data[3][0] = P.pop[index].distanceX(obs);
                break;
              }
       }
-      if (P.pop[index].N.activation(in) > 0.5 && P.pop[index].pos.y == height-scl){
+      if (P.pop[index].N.activation(in) > 0.65 && P.pop[index].pos.y == height-scl){
           PVector up = new PVector(0, -22);
           P.pop[index].applyForce(up);
       }
       
       for(int i = 0; i < O.length; i++){
-        O[i].show(O[i].hits(P.pop[index]));
-        if(O[i].hits(P.pop[index])) {
+        boolean hit = O[i].hits(P.pop[index]);
+        O[i].show(hit);
+        if(hit) {
            if(train){
                if(Best < points)
                    Best = points;

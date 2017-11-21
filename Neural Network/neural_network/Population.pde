@@ -37,4 +37,13 @@ class Population{
       
           }
   }
+  
+/*  void update(){
+    for (AIplayer p: pop){
+          p.show();
+          p.update(); 
+    }
+  }
+*/
+
 }

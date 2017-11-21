@@ -22,7 +22,7 @@ String fileName = "p.mp3";
 
 void setup(){
   size(600, 600);
-  frameRate(12);
+  frameRate(10);
   noStroke();
  // creating the game objects
   s = new Player();
@@ -34,15 +34,13 @@ void setup(){
   blop = minim.loadSample( "splat.mp3",512); // trigger when snake eats a food
 
   filePlayer = new FilePlayer( minim.loadFileStream(fileName));
+  //filePlayer.play();
   filePlayer.loop();
   rateControl = new TickRate(1.f);
   out = minim.getLineOut();
   filePlayer.patch(rateControl).patch(out);
 }
-
-
-void draw(){
-  background(51);
+void keyPressed(){
   if(health > 0){
     // snake can't go backwards unless its size is zero
     if(keyCode == UP){
@@ -64,6 +62,11 @@ void draw(){
     if (keyCode == SHIFT && keyPressed)
         s.point++;
   }
+}
+
+void draw(){
+  background(51);
+
   if (s.eat(f)){ // checks does snake eat the food
     f.pickLocation(); // new food created
     blop.trigger();
